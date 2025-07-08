@@ -5,7 +5,9 @@ import getCroppedImageUrl from "../services/image-url";
 import GenreSkeleton from "./common/GenreSkeleton";
 
 const GenreList = () => {
-  const { genres, isLoading } = useGenres();
+  const { genres, error, isLoading } = useGenres();
+
+  if (error) return null;
 
   return (
     <List.Root listStyle="none" gap={4}>
