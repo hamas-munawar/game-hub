@@ -8,6 +8,7 @@ export interface Platform {
   name: string;
 }
 export interface Game {
+  added: number;
   id: number;
   name: string;
   background_image: string;
