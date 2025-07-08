@@ -1,8 +1,9 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
-import useGames from "../hooks/useGames";
-import GameCard from "./common/GameCard";
-import GameCardSkeleton from "./common/GameCardSkeleton";
-import GameCardContainer from "./common/GameCardContainer";
+import { SimpleGrid, Text } from '@chakra-ui/react';
+
+import useGames from '../hooks/useGames';
+import GameCard from './common/GameCard';
+import GameCardContainer from './common/GameCardContainer';
+import GameCardSkeleton from './common/GameCardSkeleton';
 
 const GamesGrid = () => {
   const { games, error, isLoading } = useGames();

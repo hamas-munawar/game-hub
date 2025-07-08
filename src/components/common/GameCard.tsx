@@ -18,8 +18,6 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-  console.log(game);
-
   const platformIcons = {
     pc: <FaWindows />,
     linux: <FaLinux />,

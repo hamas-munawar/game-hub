@@ -1,7 +1,8 @@
-import { Grid, GridItem } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
-import GamesGrid from "./components/GamesGrid";
-import GenreList from "./components/GenreList";
+import { Grid, GridItem } from '@chakra-ui/react';
+
+import GamesGrid from './components/GamesGrid';
+import GenreList from './components/GenreList';
+import NavBar from './components/NavBar';
 
 const App = () => {
   return (
