@@ -1,18 +1,20 @@
-import { Button, Card, HStack, Icon, Image, Text } from "@chakra-ui/react";
-import {
-  FaPlus,
-  FaWindows,
-  FaLinux,
-  FaXbox,
-  FaPlaystation,
-  FaAndroid,
-} from "react-icons/fa6";
-import { MdPhoneIphone } from "react-icons/md";
-import type { Game } from "../../hooks/useGames";
 import { BsGlobe } from "react-icons/bs";
 import { FaApple } from "react-icons/fa";
+import {
+  FaAndroid,
+  FaLinux,
+  FaPlaystation,
+  FaPlus,
+  FaWindows,
+  FaXbox,
+} from "react-icons/fa6";
+import { MdPhoneIphone } from "react-icons/md";
+
+import { Button, Card, HStack, Icon, Image, Text } from "@chakra-ui/react";
+
 import getCroppedImageUrl from "../../services/image-url";
 
+import type { Game } from "../../hooks/useGames";
 interface Props {
   game: Game;
 }
@@ -30,8 +32,11 @@ const GameCard = ({ game }: Props) => {
   };
 
   return (
-    <Card.Root>
-      <Image src={getCroppedImageUrl(game.background_image)} />
+    <Card.Root _hover={{ cursor: "default" }}>
+      <Image
+        src={getCroppedImageUrl(game.background_image)}
+        borderTopRadius="sm"
+      />
       <Card.Body gap={4}>
         <HStack gap={2.5}>
           {game.parent_platforms?.map(

@@ -1,8 +1,8 @@
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem } from "@chakra-ui/react";
 
-import GamesGrid from './components/GamesGrid';
-import GenreList from './components/GenreList';
-import NavBar from './components/NavBar';
+import GamesGrid from "./components/GamesGrid";
+import GenreList from "./components/GenreList";
+import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
@@ -18,7 +18,9 @@ const App = () => {
       <GridItem
         area="aside"
         display={{ base: "none", lg: "block" }}
-        paddingInline={6}
+        paddingInlineStart={6}
+        width="2xs"
+        overflow="hidden"
       >
         <GenreList />
       </GridItem>

@@ -1,8 +1,9 @@
-import { HStack, Image, Switch } from "@chakra-ui/react";
-import { useColorMode } from "./ui/color-mode";
-import { Icon } from "@chakra-ui/react";
 import { FaMoon, FaSun } from "react-icons/fa";
+
+import { HStack, Icon, Image, Switch } from "@chakra-ui/react";
+
 import logo from "../assets/logo.webp";
+import { useColorMode } from "./ui/color-mode";
 
 const NavBar = () => {
   const { toggleColorMode } = useColorMode();

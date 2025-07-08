@@ -1,8 +1,8 @@
-import { HStack, Image, List, Text } from '@chakra-ui/react';
+import { HStack, Image, List, Text } from "@chakra-ui/react";
 
-import useGenres from '../hooks/useGenres';
-import getCroppedImageUrl from '../services/image-url';
-import GenreSkeleton from './common/GenreSkeleton';
+import useGenres from "../hooks/useGenres";
+import getCroppedImageUrl from "../services/image-url";
+import GenreSkeleton from "./common/GenreSkeleton";
 
 const GenreList = () => {
   const { genres, isLoading } = useGenres();
@@ -11,14 +11,14 @@ const GenreList = () => {
     <List.Root listStyle="none" gap={4}>
       {isLoading && Array.from({ length: 18 }).map(() => <GenreSkeleton />)}
       {genres.map((genre) => (
-        <List.Item key={genre.id}>
+        <List.Item key={genre.id} _hover={{ cursor: "pointer" }}>
           <HStack>
             <Image
               src={getCroppedImageUrl(genre.image_background)}
               boxSize="32px"
               borderRadius={5}
             />
-            <Text>{genre.name}</Text>
+            <Text fontSize="lg">{genre.name}</Text>
           </HStack>
         </List.Item>
       ))}
