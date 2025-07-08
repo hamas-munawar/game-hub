@@ -32,7 +32,7 @@ const GameCard = ({ game }: Props) => {
   };
 
   return (
-    <Card.Root maxW="sm" overflow="hidden">
+    <Card.Root maxW="sm" overflow="hidden" width="380px">
       <Image src={getCroppedImageUrl(game.background_image)} />
       <Card.Body gap={4}>
         <HStack gap={2.5}>
