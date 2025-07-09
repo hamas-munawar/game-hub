@@ -1,9 +1,14 @@
-import { createListCollection, Portal, Select, Skeleton } from '@chakra-ui/react';
+import {
+  createListCollection,
+  Portal,
+  Select,
+  Skeleton,
+} from "@chakra-ui/react";
 
-import usePlatforms from '../hooks/usePaltforms';
+import usePlatforms from "../hooks/usePaltforms";
 
 interface Props {
-  onSelectPlatform: (value: number) => void;
+  onSelectPlatform: (platformId: number) => void;
 }
 
 const PlatformSelector = ({ onSelectPlatform }: Props) => {
