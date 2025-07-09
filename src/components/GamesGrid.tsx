@@ -5,15 +5,16 @@ import GameCard from "./common/GameCard";
 import GameCardContainer from "./common/GameCardContainer";
 import GameCardSkeleton from "./common/GameCardSkeleton";
 
-import type { Genre } from "../hooks/useGenres";
-
 interface Props {
-  selectedGenre: Genre | null;
-  selectedPlatform: number | null;
+  selectedGenreId: number | null;
+  selectedPlatformId: number | null;
 }
 
-const GamesGrid = ({ selectedGenre }: Props) => {
-  const { games, error, isLoading } = useGames(selectedGenre);
+const GamesGrid = ({ selectedGenreId, selectedPlatformId }: Props) => {
+  const { games, error, isLoading } = useGames(
+    selectedGenreId,
+    selectedPlatformId
+  );
 
   return (
     <>

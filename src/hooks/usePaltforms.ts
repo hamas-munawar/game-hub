@@ -1,4 +1,4 @@
-import useData from "./useData";
+import useData from './useData';
 
 import type { Platform } from "./useGames";
 

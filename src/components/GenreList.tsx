@@ -4,13 +4,12 @@ import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import GenreSkeleton from "./common/GenreSkeleton";
 
-import type { Genre } from "../hooks/useGenres";
 interface Props {
-  selectedGenre: Genre | null;
-  onSelectGenre: (genre: Genre) => void;
+  selectedGenreId: number | null;
+  onSelectGenre: (id: number) => void;
 }
 
-const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
   const { genres, error, isLoading } = useGenres();
 
   if (error) return null;
@@ -23,7 +22,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
         ))}
       {genres.map((genre) => (
         <List.Item key={genre.id} _hover={{ cursor: "pointer" }}>
-          <Link onClick={() => onSelectGenre(genre)}>
+          <Link onClick={() => onSelectGenre(genre.id)}>
             <HStack>
               <Image
                 src={getCroppedImageUrl(genre.image_background)}
@@ -33,7 +32,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
               <Text
                 fontSize="lg"
                 textDecoration={
-                  genre.slug == selectedGenre?.slug ? "underline" : "none"
+                  genre.id == selectedGenreId ? "underline" : "none"
                 }
               >
                 {genre.name}
