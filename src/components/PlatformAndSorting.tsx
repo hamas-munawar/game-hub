@@ -4,26 +4,32 @@ import usePlatforms from "../hooks/usePaltforms";
 import PlatformSelector from "./common/PlatformSelector";
 import SortOrderSelector from "./common/SortOrderSelector";
 
+import type { Platform } from "../hooks/useGames";
+
 interface Props {
-  onSelectPlatform: (platformId: number) => void;
+  selectedPlatform: Platform | null;
+  selectedSortOrder: string | null;
+  onSelectPlatform: (platform: Platform) => void;
   onSelectSortOrder: (order: string) => void;
 }
 
-const PlatformAndSorting = ({ onSelectPlatform, onSelectSortOrder }: Props) => {
+const PlatformAndSorting = ({
+  onSelectPlatform,
+  onSelectSortOrder,
+  selectedPlatform,
+  selectedSortOrder,
+}: Props) => {
   const platformObj = usePlatforms();
 
   return (
-    <Box
-      display="flex"
-      flexDirection={{ base: "column", sm: "row" }}
-      gap={2}
-      paddingInline={4}
-    >
+    <Box display="flex" flexDirection={{ base: "column", sm: "row" }} gap={2}>
       <PlatformSelector
+        selectedPlatform={selectedPlatform}
         onSelectPlatform={onSelectPlatform}
         platformObj={platformObj}
       />
       <SortOrderSelector
+        selectedSortOrder={selectedSortOrder}
         onSelectSortOrder={onSelectSortOrder}
         isLoading={platformObj.isLoading}
       />

@@ -1,61 +1,56 @@
-import {
-  createListCollection,
-  Portal,
-  Select,
-  Skeleton,
-} from "@chakra-ui/react";
+import { CgChevronDown } from "react-icons/cg";
+
+import { Button, Menu, Portal, Skeleton } from "@chakra-ui/react";
 
 interface Props {
+  selectedSortOrder: string | null;
   onSelectSortOrder: (order: string) => void;
   isLoading: boolean;
 }
 
-const SortOrderSelector = ({ onSelectSortOrder, isLoading }: Props) => {
-  const sortOrders = createListCollection({
-    items: [
-      { value: "", label: "Relevance" },
-      { value: "-added", label: "Date Added" },
-      { value: "name", label: "Name" },
-      { value: "-released", label: "Release Date" },
-      { value: "-metacritic", label: "Popularity" },
-      { value: "-rating", label: "Average Rating" },
-    ],
-  });
+const SortOrderSelector = ({
+  onSelectSortOrder,
+  isLoading,
+  selectedSortOrder,
+}: Props) => {
+  const sortOrders = [
+    { value: "", label: "Relevance" },
+    { value: "-added", label: "Date Added" },
+    { value: "name", label: "Name" },
+    { value: "-released", label: "Release Date" },
+    { value: "-metacritic", label: "Popularity" },
+    { value: "-rating", label: "Average Rating" },
+  ];
 
-  if (isLoading)
-    return (
-      <Skeleton width="240px" paddingBlock={5} marginInlineStart={4}></Skeleton>
-    );
+  if (isLoading) return <Skeleton width="240px" paddingBlock={5}></Skeleton>;
 
   return (
-    <Select.Root
-      collection={sortOrders}
-      width={{ base: "100%", sm: "240px" }}
-      variant="subtle"
-      onSelect={(e) => onSelectSortOrder(e.value)}
-    >
-      <Select.HiddenSelect />
-      <Select.Control>
-        <Select.Trigger>
-          <Select.ValueText placeholder="Relevance" />
-        </Select.Trigger>
-        <Select.IndicatorGroup>
-          <Select.Indicator />
-        </Select.IndicatorGroup>
-      </Select.Control>
+    <Menu.Root>
+      <Menu.Trigger asChild>
+        <Button variant="subtle" size="sm">
+          Sort By:{"  "}
+          {selectedSortOrder
+            ? sortOrders.find((order) => order.value === selectedSortOrder)
+                ?.label
+            : "Relevance"}
+          <CgChevronDown />
+        </Button>
+      </Menu.Trigger>
       <Portal>
-        <Select.Positioner>
-          <Select.Content>
-            {sortOrders.items.map((order) => (
-              <Select.Item item={order} key={order.value}>
+        <Menu.Positioner>
+          <Menu.Content>
+            {sortOrders.map((order) => (
+              <Menu.Item
+                onClick={() => onSelectSortOrder(order.value)}
+                value={order.value}
+              >
                 {order.label}
-                <Select.ItemIndicator />
-              </Select.Item>
+              </Menu.Item>
             ))}
-          </Select.Content>
-        </Select.Positioner>
+          </Menu.Content>
+        </Menu.Positioner>
       </Portal>
-    </Select.Root>
+    </Menu.Root>
   );
 };
 

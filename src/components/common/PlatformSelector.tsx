@@ -1,61 +1,47 @@
-import {
-  createListCollection,
-  Portal,
-  Select,
-  Skeleton,
-} from "@chakra-ui/react";
+import { CgChevronDown } from "react-icons/cg";
+
+import { Button, Menu, Portal, Skeleton } from "@chakra-ui/react";
 
 import type { Platform } from "../../hooks/useGames";
-
 interface Props {
-  onSelectPlatform: (platformId: number) => void;
+  selectedPlatform: Platform | null;
+  onSelectPlatform: (platform: Platform) => void;
   platformObj: { platforms: Platform[]; error: string; isLoading: boolean };
 }
 
-const PlatformSelector = ({ onSelectPlatform, platformObj }: Props) => {
+const PlatformSelector = ({
+  onSelectPlatform,
+  platformObj,
+  selectedPlatform,
+}: Props) => {
   const { platforms, error, isLoading } = platformObj;
   if (error) return;
 
-  if (isLoading)
-    return (
-      <Skeleton width="240px" paddingBlock={5} marginInlineStart={4}></Skeleton>
-    );
-
-  const platformsList = createListCollection({
-    items: platforms.map((p) => {
-      return { label: p.name, value: p.id };
-    }),
-  });
+  if (isLoading) return <Skeleton width="240px" paddingBlock={5}></Skeleton>;
 
   return (
-    <Select.Root
-      collection={platformsList}
-      width={{ base: "100%", sm: "240px" }}
-      variant="subtle"
-      onSelect={(e) => onSelectPlatform(parseInt(e.value))}
-    >
-      <Select.HiddenSelect />
-      <Select.Control>
-        <Select.Trigger>
-          <Select.ValueText placeholder="Select Platform" />
-        </Select.Trigger>
-        <Select.IndicatorGroup>
-          <Select.Indicator />
-        </Select.IndicatorGroup>
-      </Select.Control>
+    <Menu.Root>
+      <Menu.Trigger asChild>
+        <Button variant="subtle" size="sm">
+          {selectedPlatform ? selectedPlatform.name : " Select Platform"}{" "}
+          <CgChevronDown />
+        </Button>
+      </Menu.Trigger>
       <Portal>
-        <Select.Positioner>
-          <Select.Content>
-            {platformsList.items.map((platform) => (
-              <Select.Item item={platform} key={platform.value}>
-                {platform.label}
-                <Select.ItemIndicator />
-              </Select.Item>
+        <Menu.Positioner>
+          <Menu.Content>
+            {platforms.map((platform) => (
+              <Menu.Item
+                onClick={() => onSelectPlatform(platform)}
+                value={platform.slug}
+              >
+                {platform.name}
+              </Menu.Item>
             ))}
-          </Select.Content>
-        </Select.Positioner>
+          </Menu.Content>
+        </Menu.Positioner>
       </Portal>
-    </Select.Root>
+    </Menu.Root>
   );
 };
 
