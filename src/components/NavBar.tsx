@@ -6,13 +6,17 @@ import logo from "../assets/logo.webp";
 import Searchbox from "./common/Searchbox";
 import { useColorMode } from "./ui/color-mode";
 
-const NavBar = () => {
+interface Props {
+  onSearch: (searchQuery: string) => void;
+}
+
+const NavBar = ({ onSearch }: Props) => {
   const { toggleColorMode } = useColorMode();
 
   return (
     <HStack paddingInline={4}>
       <Image src={logo} boxSize="60px" />
-      <Searchbox />
+      <Searchbox onSearch={onSearch} />
       <Switch.Root colorPalette="blue" size="lg" onChange={toggleColorMode}>
         <Switch.HiddenInput />
         <Switch.Control>
