@@ -30,10 +30,8 @@ const PlatformSelector = ({ onSelectPlatform, platformObj }: Props) => {
   return (
     <Select.Root
       collection={platformsList}
-      // size="sm"
-      width="240px"
+      width={{ base: "100%", sm: "240px" }}
       variant="subtle"
-      paddingInlineStart={4}
       onSelect={(e) => onSelectPlatform(parseInt(e.value))}
     >
       <Select.HiddenSelect />

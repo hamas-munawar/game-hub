@@ -30,9 +30,8 @@ const SortOrderSelector = ({ onSelectSortOrder, isLoading }: Props) => {
   return (
     <Select.Root
       collection={sortOrders}
-      width="240px"
+      width={{ base: "100%", sm: "240px" }}
       variant="subtle"
-      paddingInlineStart={4}
       onSelect={(e) => onSelectSortOrder(e.value)}
     >
       <Select.HiddenSelect />

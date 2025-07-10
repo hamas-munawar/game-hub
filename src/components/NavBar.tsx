@@ -3,15 +3,16 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { HStack, Icon, Image, Switch } from "@chakra-ui/react";
 
 import logo from "../assets/logo.webp";
+import Searchbox from "./common/Searchbox";
 import { useColorMode } from "./ui/color-mode";
 
 const NavBar = () => {
   const { toggleColorMode } = useColorMode();
 
   return (
-    <HStack justifyContent="space-between" paddingInline={4}>
+    <HStack paddingInline={4}>
       <Image src={logo} boxSize="60px" />
-      Navbar
+      <Searchbox />
       <Switch.Root colorPalette="blue" size="lg" onChange={toggleColorMode}>
         <Switch.HiddenInput />
         <Switch.Control>

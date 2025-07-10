@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import usePlatforms from "../hooks/usePaltforms";
 import PlatformSelector from "./common/PlatformSelector";
@@ -13,7 +13,12 @@ const PlatformAndSorting = ({ onSelectPlatform, onSelectSortOrder }: Props) => {
   const platformObj = usePlatforms();
 
   return (
-    <HStack>
+    <Box
+      display="flex"
+      flexDirection={{ base: "column", sm: "row" }}
+      gap={2}
+      paddingInline={4}
+    >
       <PlatformSelector
         onSelectPlatform={onSelectPlatform}
         platformObj={platformObj}
@@ -22,7 +27,7 @@ const PlatformAndSorting = ({ onSelectPlatform, onSelectSortOrder }: Props) => {
         onSelectSortOrder={onSelectSortOrder}
         isLoading={platformObj.isLoading}
       />
-    </HStack>
+    </Box>
   );
 };
 
