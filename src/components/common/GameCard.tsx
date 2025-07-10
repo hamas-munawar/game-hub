@@ -13,6 +13,7 @@ import { MdPhoneIphone } from "react-icons/md";
 import { Button, Card, HStack, Icon, Image, Text } from "@chakra-ui/react";
 
 import getCroppedImageUrl from "../../services/image-url";
+import Emoji from "./Emoji";
 
 import type { Game } from "../../hooks/useGames";
 interface Props {
@@ -48,7 +49,9 @@ const GameCard = ({ game }: Props) => {
               )
           )}
         </HStack>
-        <Card.Title fontSize="2xl">{game.name}</Card.Title>
+        <Card.Title fontSize="2xl">
+          {game.name} <Emoji rating={game.rating_top} />
+        </Card.Title>
         <Button variant="subtle" width="fit">
           <FaPlus />
           <Text letterSpacing={1}>{game.added}</Text>
