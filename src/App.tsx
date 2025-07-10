@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 import GamesGrid from "./components/GamesGrid";
 import GamesPageHeading from "./components/GamesPageHeading";
@@ -51,20 +51,18 @@ const App = () => {
           onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
         />
       </GridItem>
-      <GridItem area="main">
-        <Box paddingInline={4}>
-          <GamesPageHeading gameQuery={gameQuery} />
-          <PlatformAndSorting
-            selectedPlatform={gameQuery.platform}
-            selectedSortOrder={gameQuery.order}
-            onSelectPlatform={(platform: Platform) =>
-              setGameQuery({ ...gameQuery, platform })
-            }
-            onSelectSortOrder={(order: string) =>
-              setGameQuery({ ...gameQuery, order })
-            }
-          />
-        </Box>
+      <GridItem area="main" paddingInline={4} spaceY={4}>
+        <GamesPageHeading gameQuery={gameQuery} />
+        <PlatformAndSorting
+          selectedPlatform={gameQuery.platform}
+          selectedSortOrder={gameQuery.order}
+          onSelectPlatform={(platform: Platform) =>
+            setGameQuery({ ...gameQuery, platform })
+          }
+          onSelectSortOrder={(order: string) =>
+            setGameQuery({ ...gameQuery, order })
+          }
+        />
         <GamesGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>

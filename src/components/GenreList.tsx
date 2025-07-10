@@ -26,8 +26,11 @@ const GenreList = ({ genre, onSelectGenre }: Props) => {
             <GenreSkeleton key={index} />
           ))}
         {genres.map((g) => (
-          <List.Item key={g.id} _hover={{ cursor: "pointer" }}>
-            <Link onClick={() => onSelectGenre(g)}>
+          <List.Item key={g.id}>
+            <Link
+              onClick={() => onSelectGenre(g)}
+              _hover={{ cursor: "pointer" }}
+            >
               <HStack>
                 <Image
                   src={getCroppedImageUrl(g.image_background)}

@@ -24,8 +24,7 @@ const GamesGrid = ({ gameQuery }: Props) => {
           lg: "repeat(3, 1fr)",
           "2xl": "repeat(4, 1ft)",
         }}
-        gap="6"
-        padding="1rem"
+        gap={6}
       >
         {isLoading &&
           Array.from({ length: 12 }).map((_, index) => (
