@@ -21,7 +21,7 @@ const PlatformSelector = ({
   const { platforms, error, isLoading } = platformHookResponse;
   if (error) return;
 
-  if (isLoading) return <Skeleton width="240px" paddingBlock={5}></Skeleton>;
+  if (isLoading) return <Skeleton width="150px" paddingBlock={5}></Skeleton>;
 
   return (
     <Menu.Root>
