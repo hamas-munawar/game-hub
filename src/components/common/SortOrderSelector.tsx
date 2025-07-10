@@ -41,6 +41,7 @@ const SortOrderSelector = ({
           <Menu.Content>
             {sortOrders.map((order) => (
               <Menu.Item
+                key={order.value}
                 onClick={() => onSelectSortOrder(order.value)}
                 value={order.value}
               >

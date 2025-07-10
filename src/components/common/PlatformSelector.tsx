@@ -36,6 +36,7 @@ const PlatformSelector = ({
           <Menu.Content>
             {platforms.map((platform) => (
               <Menu.Item
+                key={platform.id}
                 onClick={() => onSelectPlatform(platform)}
                 value={platform.slug}
               >
