@@ -19,19 +19,19 @@ const PlatformAndSorting = ({
   selectedPlatform,
   selectedSortOrder,
 }: Props) => {
-  const platformObj = usePlatforms();
+  const platformHookResponse = usePlatforms();
 
   return (
     <Box display="flex" flexDirection={{ base: "column", sm: "row" }} gap={2}>
       <PlatformSelector
         selectedPlatform={selectedPlatform}
         onSelectPlatform={onSelectPlatform}
-        platformObj={platformObj}
+        platformHookResponse={platformHookResponse}
       />
       <SortOrderSelector
         selectedSortOrder={selectedSortOrder}
         onSelectSortOrder={onSelectSortOrder}
-        isLoading={platformObj.isLoading}
+        isLoading={platformHookResponse.isLoading}
       />
     </Box>
   );

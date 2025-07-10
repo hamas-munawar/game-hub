@@ -6,15 +6,19 @@ import type { Platform } from "../../hooks/useGames";
 interface Props {
   selectedPlatform: Platform | null;
   onSelectPlatform: (platform: Platform) => void;
-  platformObj: { platforms: Platform[]; error: string; isLoading: boolean };
+  platformHookResponse: {
+    platforms: Platform[];
+    error: string;
+    isLoading: boolean;
+  };
 }
 
 const PlatformSelector = ({
   onSelectPlatform,
-  platformObj,
+  platformHookResponse,
   selectedPlatform,
 }: Props) => {
-  const { platforms, error, isLoading } = platformObj;
+  const { platforms, error, isLoading } = platformHookResponse;
   if (error) return;
 
   if (isLoading) return <Skeleton width="240px" paddingBlock={5}></Skeleton>;
