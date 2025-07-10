@@ -22,7 +22,13 @@ const useGames = (gameQuery: GameQuery) => {
     isLoading,
   } = useData<Game>(
     "/games",
-    { params: { genres: gameQuery.genreId, platforms: gameQuery.platformId } },
+    {
+      params: {
+        genres: gameQuery.genreId,
+        platforms: gameQuery.platformId,
+        ordering: gameQuery.order,
+      },
+    },
     [gameQuery]
   );
   return { games, error, isLoading };
