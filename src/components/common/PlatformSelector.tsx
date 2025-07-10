@@ -5,15 +5,15 @@ import {
   Skeleton,
 } from "@chakra-ui/react";
 
-import usePlatforms from "../hooks/usePaltforms";
+import type { Platform } from "../../hooks/useGames";
 
 interface Props {
   onSelectPlatform: (platformId: number) => void;
+  platformObj: { platforms: Platform[]; error: string; isLoading: boolean };
 }
 
-const PlatformSelector = ({ onSelectPlatform }: Props) => {
-  const { platforms, error, isLoading } = usePlatforms();
-
+const PlatformSelector = ({ onSelectPlatform, platformObj }: Props) => {
+  const { platforms, error, isLoading } = platformObj;
   if (error) return;
 
   if (isLoading)

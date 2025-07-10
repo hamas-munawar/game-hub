@@ -1,10 +1,16 @@
-import { createListCollection, Portal, Select } from "@chakra-ui/react";
+import {
+  createListCollection,
+  Portal,
+  Select,
+  Skeleton,
+} from "@chakra-ui/react";
 
 interface Props {
   onSelectSortOrder: (order: string) => void;
+  isLoading: boolean;
 }
 
-const SortOrderSelector = ({ onSelectSortOrder }: Props) => {
+const SortOrderSelector = ({ onSelectSortOrder, isLoading }: Props) => {
   const sortOrders = createListCollection({
     items: [
       { value: "", label: "Relevance" },
@@ -15,6 +21,11 @@ const SortOrderSelector = ({ onSelectSortOrder }: Props) => {
       { value: "-rating", label: "Average Rating" },
     ],
   });
+
+  if (isLoading)
+    return (
+      <Skeleton width="240px" paddingBlock={5} marginInlineStart={4}></Skeleton>
+    );
 
   return (
     <Select.Root
