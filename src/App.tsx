@@ -53,7 +53,7 @@ const App = () => {
           onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
         />
       </GridItem>
-      <GridItem area="main" paddingInline={4} spaceY={4}>
+      <GridItem area="main" paddingInline={4} paddingBlockEnd={5} spaceY={4}>
         <GamesPageHeading gameQuery={gameQuery} />
 
         <Box
