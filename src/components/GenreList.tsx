@@ -1,8 +1,8 @@
-import { Heading, HStack, Image, Link, List, Text } from "@chakra-ui/react";
+import { Heading, HStack, Image, Link, List, Text } from '@chakra-ui/react';
 
-import useGenres from "../hooks/useGenres";
-import getCroppedImageUrl from "../services/image-url";
-import GenreSkeleton from "./common/GenreSkeleton";
+import useGenres from '../hooks/useGenres';
+import getCroppedImageUrl from '../services/image-url';
+import GenreSkeleton from './common/GenreSkeleton';
 
 import type { Genre } from "../hooks/useGenres";
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const GenreList = ({ genre, onSelectGenre }: Props) => {
-  const { genres, error, isLoading } = useGenres();
+  const { data, error, isLoading } = useGenres();
 
   if (error) return null;
 
@@ -25,7 +25,7 @@ const GenreList = ({ genre, onSelectGenre }: Props) => {
           Array.from({ length: 18 }).map((_, index) => (
             <GenreSkeleton key={index} />
           ))}
-        {genres.map((g) => (
+        {data?.results.map((g) => (
           <List.Item key={g.id}>
             <Link
               onClick={() => onSelectGenre(g)}

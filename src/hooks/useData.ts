@@ -1,10 +1,11 @@
-import { CanceledError } from "axios";
-import { useEffect, useState } from "react";
+import { CanceledError } from 'axios';
+import { useEffect, useState } from 'react';
 
-import apiClient from "../services/api-client";
+import apiClient from '../services/api-client';
 
 import type { AxiosRequestConfig } from "axios";
-interface FetchResults<T> {
+
+export interface FetchResults<T> {
   count: number;
   results: T[];
 }
