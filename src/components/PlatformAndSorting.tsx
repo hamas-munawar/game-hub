@@ -1,8 +1,8 @@
-import { Box } from "@chakra-ui/react";
+import { Box } from '@chakra-ui/react';
 
-import usePlatforms from "../hooks/usePaltforms";
-import PlatformSelector from "./common/PlatformSelector";
-import SortOrderSelector from "./common/SortOrderSelector";
+import usePlatforms from '../hooks/usePaltforms';
+import PlatformSelector from './common/PlatformSelector';
+import SortOrderSelector from './common/SortOrderSelector';
 
 import type { Platform } from "../hooks/useGames";
 

@@ -1,14 +1,16 @@
-import { CgChevronDown } from "react-icons/cg";
+import { CgChevronDown } from 'react-icons/cg';
 
-import { Button, Menu, Portal, Skeleton } from "@chakra-ui/react";
+import { Button, Menu, Portal, Skeleton } from '@chakra-ui/react';
 
 import type { Platform } from "../../hooks/useGames";
+import type { FetchResults } from "../../hooks/useData";
+
 interface Props {
   selectedPlatform: Platform | null;
   onSelectPlatform: (platform: Platform) => void;
   platformHookResponse: {
-    platforms: Platform[];
-    error: string;
+    data: FetchResults<Platform> | undefined;
+    error: Error | null;
     isLoading: boolean;
   };
 }
@@ -18,7 +20,7 @@ const PlatformSelector = ({
   platformHookResponse,
   selectedPlatform,
 }: Props) => {
-  const { platforms, error, isLoading } = platformHookResponse;
+  const { data, error, isLoading } = platformHookResponse;
   if (error) return;
 
   if (isLoading) return <Skeleton width="150px" paddingBlock={5}></Skeleton>;
@@ -34,7 +36,7 @@ const PlatformSelector = ({
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            {platforms.map((platform) => (
+            {data?.results.map((platform) => (
               <Menu.Item
                 key={platform.id}
                 onClick={() => onSelectPlatform(platform)}
