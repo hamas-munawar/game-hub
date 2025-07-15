@@ -4,12 +4,7 @@ import apiClient from '../services/api-client';
 
 import type { GameQuery } from "../App";
 import type { FetchResults } from "../services/api-client";
-
-export interface Platform {
-  id: number;
-  slug: string;
-  name: string;
-}
+import type { Platform } from "./usePaltforms";
 
 export interface Game {
   added: number;

@@ -4,7 +4,7 @@ import { Button, Menu, Portal, Skeleton } from '@chakra-ui/react';
 
 import usePlatforms from '../../hooks/usePaltforms';
 
-import type { Platform } from "../../hooks/useGames";
+import type { Platform } from "../../hooks/usePaltforms";
 
 interface Props {
   selectedPlatform: Platform | null;

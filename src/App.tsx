@@ -10,7 +10,7 @@ import GenreList from './components/GenreList';
 import NavBar from './components/NavBar';
 
 import type { Genre } from "./hooks/useGenres";
-import type { Platform } from "./hooks/useGames";
+import type { Platform } from "./hooks/usePaltforms";
 
 export interface GameQuery {
   genre: Genre | null;
