@@ -1,5 +1,6 @@
 export default {
   count: 19,
+  next: "",
   results: [
     {
       id: 4,

@@ -17,14 +17,7 @@ export interface Game {
 const apiClient = new APIClient<Game>("games");
 
 const useGames = (gameQuery: GameQuery) => {
-  const {
-    data,
-    error,
-    isLoading,
-    isFetchingNextPage,
-    fetchNextPage,
-    hasNextPage,
-  } = useInfiniteQuery({
+  return useInfiniteQuery({
     queryKey: ["games", gameQuery],
     queryFn: ({ pageParam = 1 }) =>
       apiClient.get({
@@ -41,14 +34,6 @@ const useGames = (gameQuery: GameQuery) => {
     getNextPageParam: (lastPage, allPages) =>
       lastPage.next ? allPages.length + 1 : undefined,
   });
-  return {
-    data,
-    error,
-    isLoading,
-    isFetchingNextPage,
-    fetchNextPage,
-    hasNextPage,
-  };
 };
 
 export default useGames;

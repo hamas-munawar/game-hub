@@ -12,13 +12,12 @@ export interface Platform {
 const apiClient = new APIClient<Platform>("/platforms/lists/parents");
 
 const usePlatforms = () => {
-  const { data, error, isLoading } = useQuery({
+  return useQuery({
     queryKey: ["platforms"],
     queryFn: apiClient.get,
     staleTime: 24 * 60 * 60 * 1000, // 24hr
     initialData: platforms,
   });
-  return { data, error, isLoading };
 };
 
 export default usePlatforms;
