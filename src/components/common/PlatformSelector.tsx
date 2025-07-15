@@ -4,15 +4,16 @@ import { Button, Menu, Portal, Skeleton } from '@chakra-ui/react';
 
 import usePlatforms from '../../hooks/usePaltforms';
 
-import type { Platform } from "../../hooks/usePaltforms";
-
 interface Props {
-  selectedPlatform: Platform | null;
-  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatformId?: number;
+  onSelectPlatform: (platformId: number) => void;
 }
 
-const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
+const PlatformSelector = ({ onSelectPlatform, selectedPlatformId }: Props) => {
   const { data, error, isLoading } = usePlatforms();
+  const selectedPlatform = data.results.find(
+    (p) => p.id === selectedPlatformId
+  );
 
   if (error) return;
 
@@ -22,7 +23,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
     <Menu.Root>
       <Menu.Trigger asChild>
         <Button variant="subtle" size="sm">
-          {selectedPlatform ? selectedPlatform.name : " Select Platform"}{" "}
+          {selectedPlatform ? selectedPlatform.name : " Select Platform"}
           <CgChevronDown />
         </Button>
       </Menu.Trigger>
@@ -32,7 +33,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
             {data?.results.map((platform) => (
               <Menu.Item
                 key={platform.id}
-                onClick={() => onSelectPlatform(platform)}
+                onClick={() => onSelectPlatform(platform.id)}
                 value={platform.slug}
               >
                 {platform.name}
