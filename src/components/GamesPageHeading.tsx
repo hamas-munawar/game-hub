@@ -1,7 +1,7 @@
 import { Heading } from '@chakra-ui/react';
 
-import useGenres from '../hooks/useGenres';
-import usePlatforms from '../hooks/usePaltforms';
+import useGenre from '../hooks/useGenre';
+import usePlatform from '../hooks/usePlatform';
 
 import type { GameQuery } from "./../App";
 interface Props {
@@ -9,14 +9,8 @@ interface Props {
 }
 
 const GamesPageHeading = ({ gameQuery }: Props) => {
-  const { data: genres } = useGenres();
-  const selectedGenre = genres.results.find(
-    (g) => g.id === gameQuery.selectedGenreId
-  );
-  const { data: platforms } = usePlatforms();
-  const selectedPlatform = platforms.results.find(
-    (p) => p.id === gameQuery.selectedPlatformId
-  );
+  const selectedGenre = useGenre(gameQuery.selectedGenreId);
+  const selectedPlatform = usePlatform(gameQuery.selectedPlatformId);
 
   return (
     <Heading

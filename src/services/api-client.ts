@@ -4,7 +4,7 @@ import type { AxiosRequestConfig } from "axios";
 
 export interface FetchResults<T> {
   count: number;
-  next: string;
+  next: string | null;
   results: T[];
 }
 const axiosInstance = axios.create({
