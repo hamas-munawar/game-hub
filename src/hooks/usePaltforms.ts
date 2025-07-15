@@ -4,7 +4,7 @@ import platforms from '../data/platforms';
 import apiClient from '../services/api-client';
 
 import type { Platform } from "./useGames";
-import type { FetchResults } from "./useData";
+import type { FetchResults } from "../services/api-client";
 const usePlatforms = () => {
   const { data, error, isLoading } = useQuery({
     queryKey: ["platforms"],
