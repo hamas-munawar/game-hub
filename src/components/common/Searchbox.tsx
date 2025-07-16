@@ -3,18 +3,17 @@ import { LuSearch } from "react-icons/lu";
 
 import { Input, InputGroup } from "@chakra-ui/react";
 
-interface Props {
-  onSearch: (searchQuery: string) => void;
-}
+import useGameQueryStore from "../../store";
 
-const Searchbox = ({ onSearch }: Props) => {
+const Searchbox = () => {
   const ref = useRef<HTMLInputElement>(null);
+  const setSearchText = useGameQueryStore((s) => s.setSearchText);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onSearch(ref.current?.value || "");
+        if (ref.current) setSearchText(ref.current.value);
       }}
     >
       <InputGroup flex="1" startElement={<LuSearch />}>

@@ -1,16 +1,15 @@
-import { Heading, HStack, Image, Link, List, Text } from '@chakra-ui/react';
+import { Heading, HStack, Image, Link, List, Text } from "@chakra-ui/react";
 
-import useGenres from '../hooks/useGenres';
-import getCroppedImageUrl from '../services/image-url';
-import GenreSkeleton from './common/GenreSkeleton';
+import useGenres from "../hooks/useGenres";
+import getCroppedImageUrl from "../services/image-url";
+import useGameQueryStore from "../store";
+import GenreSkeleton from "./common/GenreSkeleton";
 
-interface Props {
-  selectedGenreId?: number;
-  onSelectGenre: (genreId: number) => void;
-}
-
-const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
+const GenreList = () => {
   const { data, error, isLoading } = useGenres();
+
+  const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
+  const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
 
   if (error) return null;
 
@@ -27,7 +26,7 @@ const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
         {data?.results.map((g) => (
           <List.Item key={g.id}>
             <Link
-              onClick={() => onSelectGenre(g.id)}
+              onClick={() => setSelectedGenreId(g.id)}
               _hover={{ cursor: "pointer" }}
             >
               <HStack>
