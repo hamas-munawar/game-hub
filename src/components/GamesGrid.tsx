@@ -34,6 +34,7 @@ const GamesGrid = () => {
           "2xl": "repeat(4, 1ft)",
         }}
         gap={6}
+        padding={4}
       >
         {isLoading &&
           Array.from({ length: 12 }).map((_, index) => (

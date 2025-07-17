@@ -18,24 +18,23 @@ const HomePage = () => {
         lg: "200px 1fr",
       }}
     >
-      <GridItem
-        area="aside"
-        display={{ base: "none", lg: "block" }}
-        paddingInlineStart={6}
-      >
+      <GridItem area="aside" display={{ base: "none", lg: "block" }}>
         <GenreList />
       </GridItem>
-      <GridItem area="main" paddingInline={4} paddingBlockEnd={5} spaceY={4}>
-        <GamesPageHeading />
-
-        <Box
-          display="flex"
-          flexDirection={{ base: "column", sm: "row" }}
-          gap={2}
-        >
-          <PlatformSelector />
-          <SortOrderSelector />
+      <GridItem area="main">
+        <Box paddingInline={4}>
+          <GamesPageHeading />
+          <Box
+            display="flex"
+            flexDirection={{ base: "column", sm: "row" }}
+            spaceX={{ sm: 4 }}
+            spaceY={{ base: 4, sm: 0 }}
+          >
+            <PlatformSelector />
+            <SortOrderSelector />
+          </Box>
         </Box>
+
         <GamesGrid />
       </GridItem>
     </Grid>
