@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
 
-import { Box, Heading, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { Box, Heading, Spinner } from "@chakra-ui/react";
 
-import DefinationItem from "../components/common/DefinationItem";
 import ExpandableText from "../components/common/ExpandableText";
 import GameAttributes from "../components/common/GameAttributes";
 import useGame from "../hooks/useGame";

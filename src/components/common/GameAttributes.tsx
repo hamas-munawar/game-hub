@@ -1,5 +1,3 @@
-import React from "react";
-
 import { SimpleGrid, Text } from "@chakra-ui/react";
 
 import DefinationItem from "./DefinationItem";
