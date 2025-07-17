@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 import type { AxiosRequestConfig } from "axios";
 
@@ -21,9 +21,15 @@ class APIClient<T> {
     this.endpoint = endpoint;
   }
 
-  get = (config: AxiosRequestConfig) => {
+  getAll = (config: AxiosRequestConfig) => {
     return axiosInstance
       .get<FetchResults<T>>(this.endpoint, config)
+      .then((res) => res.data);
+  };
+
+  get = (slug: string) => {
+    return axiosInstance
+      .get<T>(this.endpoint + "/" + slug)
       .then((res) => res.data);
   };
 }

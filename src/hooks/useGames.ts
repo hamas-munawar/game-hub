@@ -11,6 +11,8 @@ export interface Game {
   added: number;
   id: number;
   name: string;
+  slug: string;
+  description_raw: string;
   background_image: string;
   parent_platforms: { platform: Platform }[];
   rating_top: number;
@@ -24,7 +26,7 @@ const useGames = () => {
   return useInfiniteQuery({
     queryKey: ["games", gameQuery],
     queryFn: ({ pageParam = 1 }) =>
-      apiClient.get({
+      apiClient.getAll({
         params: {
           genres: gameQuery?.genreId,
           parent_platforms: gameQuery?.platformId,
