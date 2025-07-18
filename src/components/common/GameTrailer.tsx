@@ -1,4 +1,4 @@
-import { Spinner, VStack } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react";
 
 import useTrailer from "../../hooks/useTrailer";
 
@@ -9,12 +9,7 @@ interface Props {
 const GameTrailer = ({ children: slug }: Props) => {
   const { data, error, isLoading } = useTrailer(slug);
 
-  if (isLoading)
-    return (
-      <VStack>
-        <Spinner borderWidth="4px" />
-      </VStack>
-    );
+  if (isLoading) return null;
 
   if (error) throw error;
 
