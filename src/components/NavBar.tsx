@@ -1,11 +1,11 @@
-import { FaMoon, FaSun } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaMoon, FaSun } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-import { HStack, Icon, Image, Switch } from "@chakra-ui/react";
+import { HStack, Icon, Image, Switch } from '@chakra-ui/react';
 
-import logo from "../assets/logo.webp";
-import Searchbox from "./common/Searchbox";
-import { useColorMode } from "./ui/color-mode";
+import logo from '../assets/logo.webp';
+import Searchbox from './common/Searchbox';
+import { useColorMode } from './ui/color-mode';
 
 const NavBar = () => {
   const { toggleColorMode } = useColorMode();
@@ -13,7 +13,7 @@ const NavBar = () => {
   return (
     <HStack paddingInline={4}>
       <Link to={"/"}>
-        <Image src={logo} boxSize="60px" objectFit={"cover"} />
+        <Image src={logo} boxSize="60px" objectFit={"contain"} />
       </Link>
       <Searchbox />
       <Switch.Root colorPalette="blue" size="lg" onChange={toggleColorMode}>
