@@ -1,4 +1,5 @@
 import { FaMoon, FaSun } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import { HStack, Icon, Image, Switch } from "@chakra-ui/react";
 
@@ -11,7 +12,9 @@ const NavBar = () => {
 
   return (
     <HStack paddingInline={4}>
-      <Image src={logo} boxSize="60px" />
+      <Link to={"/"}>
+        <Image src={logo} boxSize="60px" objectFit={"cover"} />
+      </Link>
       <Searchbox />
       <Switch.Root colorPalette="blue" size="lg" onChange={toggleColorMode}>
         <Switch.HiddenInput />
