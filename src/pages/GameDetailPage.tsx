@@ -4,6 +4,7 @@ import { Box, Heading, Spinner } from "@chakra-ui/react";
 
 import ExpandableText from "../components/common/ExpandableText";
 import GameAttributes from "../components/common/GameAttributes";
+import GameTrailer from "../components/common/GameTrailer";
 import useGame from "../hooks/useGame";
 
 const GameDetailPage = () => {
@@ -19,6 +20,7 @@ const GameDetailPage = () => {
       <Heading fontSize="5xl">{game.name}</Heading>
       <ExpandableText>{game.description_raw}</ExpandableText>
       <GameAttributes>{game}</GameAttributes>
+      <GameTrailer>{game.slug}</GameTrailer>
     </Box>
   );
 };
