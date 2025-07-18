@@ -2,7 +2,7 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 
 import DefinationItem from "./DefinationItem";
 
-import type { Game } from "../../interfaces/Game";
+import type Game from "../../interfaces/Game";
 
 interface Props {
   children: Game;

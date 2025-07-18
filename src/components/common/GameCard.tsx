@@ -16,7 +16,7 @@ import { Button, Card, HStack, Icon, Image, Text } from "@chakra-ui/react";
 import getCroppedImageUrl from "../../services/image-url";
 import Emoji from "./Emoji";
 
-import type { Game } from "../../interfaces/Game";
+import type Game from "../../interfaces/Game";
 interface Props {
   game: Game;
 }
