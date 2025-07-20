@@ -1,7 +1,5 @@
 # Game Hub
 
-![Game Hub Logo](./src/assets/logo.webp)
-
 Game Hub is a modern web application that allows users to discover and explore video games. Built with React and TypeScript, it provides a responsive and interactive interface for browsing games by genre, platform, and more.
 
 ## Features
