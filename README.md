@@ -34,7 +34,7 @@ Game Hub is a modern web application that allows users to discover and explore v
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v16 or higher)
 - npm or Bun package manager
 
 ### Installation
@@ -56,7 +56,7 @@ Game Hub is a modern web application that allows users to discover and explore v
    ```
    VITE_RAWG_API=your_api_key_here
    ```
-   You can get an API key from [RAWG](https://rawg.io/apidocs)
+   You can use the `.env.example` file as a template. Get an API key from [RAWG](https://rawg.io/apidocs)
 
 4. Start the development server
    ```bash
@@ -66,6 +66,13 @@ Game Hub is a modern web application that allows users to discover and explore v
    ```
 
 5. Open your browser and navigate to `http://localhost:5173`
+
+## Available Scripts
+
+- `npm run dev` / `bun run dev` - Start development server
+- `npm run build` / `bun run build` - Build for production
+- `npm run lint` / `bun run lint` - Run ESLint
+- `npm run preview` / `bun run preview` - Preview production build
 
 ## Building for Production
 
@@ -103,6 +110,36 @@ The application is fully responsive, with different layouts for mobile, tablet, 
 
 Users can toggle between dark and light themes using the switch in the navigation bar. The theme preference is stored and persisted across sessions.
 
+## API Configuration
+
+This application uses the RAWG Video Games Database API. To set up:
+
+1. Visit [RAWG API Documentation](https://rawg.io/apidocs)
+2. Create a free account and get your API key
+3. Add your API key to the `.env` file as `VITE_RAWG_API=your_api_key_here`
+
+**Note**: The API key is required for the application to function properly.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+### Development Guidelines
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Troubleshooting
+
+### Common Issues
+
+- **API Key Error**: Make sure your RAWG API key is correctly set in the `.env` file
+- **Build Errors**: Ensure you're using Node.js v16 or higher
+- **Development Server Issues**: Try deleting `node_modules` and reinstalling dependencies
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -112,3 +149,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [RAWG API](https://rawg.io/apidocs) for providing the game data
 - [Chakra UI](https://chakra-ui.com/) for the UI components
 - [React Icons](https://react-icons.github.io/react-icons/) for the icon set
+- [Tanstack Query](https://tanstack.com/query) for data fetching and caching
+- [Zustand](https://github.com/pmndrs/zustand) for state management
