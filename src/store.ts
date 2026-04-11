@@ -27,3 +27,29 @@ const useGameQueryStore = create<GameQueryStore>((set) => ({
 }));
 
 export default useGameQueryStore;
+
+interface WishlistStore {
+  wishlist: number[];
+  toggleWishlist: (gameId: number) => void;
+  isInWishlist: (gameId: number) => boolean;
+}
+
+import { persist } from "zustand/middleware";
+
+export const useWishlistStore = create<WishlistStore>()(
+  persist(
+    (set, get) => ({
+      wishlist: [],
+      toggleWishlist: (gameId) =>
+        set((state) => ({
+          wishlist: state.wishlist.includes(gameId)
+            ? state.wishlist.filter((id) => id !== gameId)
+            : [...state.wishlist, gameId],
+        })),
+      isInWishlist: (gameId) => get().wishlist.includes(gameId),
+    }),
+    {
+      name: "gamehub-wishlist",
+    }
+  )
+);

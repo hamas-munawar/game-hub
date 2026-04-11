@@ -1,30 +1,36 @@
-import { FaMoon, FaSun } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { HStack, Image, Button } from "@chakra-ui/react";
 
-import { HStack, Icon, Image, Switch } from '@chakra-ui/react';
-
-import logo from '../assets/logo.webp';
-import Searchbox from './common/Searchbox';
-import { useColorMode } from './ui/color-mode';
+import logo from "../assets/logo.webp";
+import Searchbox from "./common/Searchbox";
+import { ColorModeButton } from "./ui/color-mode";
 
 const NavBar = () => {
-  const { toggleColorMode } = useColorMode();
-
   return (
-    <HStack paddingInline={4}>
+    <HStack
+      className="navbar"
+      paddingInline={{ base: 3, md: 5 }}
+      paddingBlock={3}
+      gap={4}
+      alignItems="center"
+    >
       <Link to={"/"}>
-        <Image src={logo} boxSize="60px" objectFit={"contain"} />
+        <Image
+          className="navbar-logo"
+          src={logo}
+          boxSize="50px"
+          objectFit="contain"
+        />
       </Link>
       <Searchbox />
-      <Switch.Root colorPalette="blue" size="lg" onChange={toggleColorMode}>
-        <Switch.HiddenInput />
-        <Switch.Control>
-          <Switch.Thumb />
-          <Switch.Indicator fallback={<Icon as={FaMoon} color="gray.400" />}>
-            <Icon as={FaSun} color="yellow.400" />
-          </Switch.Indicator>
-        </Switch.Control>
-      </Switch.Root>
+      <HStack gap={2}>
+        <Link to="/wishlist">
+          <Button variant="subtle" size="sm" borderRadius="full" paddingInline={3}>
+            ❤ Wishlist
+          </Button>
+        </Link>
+        <ColorModeButton />
+      </HStack>
     </HStack>
   );
 };

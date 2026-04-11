@@ -1,6 +1,6 @@
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { SimpleGrid, Spinner, Text, VStack } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 
 import useGames from "../hooks/useGames";
 import GameCard from "./common/GameCard";
@@ -12,7 +12,7 @@ const GamesGrid = () => {
   const totalFetchedGames =
     data?.pages.reduce((totalGames, page) => totalGames + page.count, 0) || 0;
 
-  if (error) return <Text>{error.message}</Text>;
+  if (error) return <Text color="red.400" padding={8}>{error.message}</Text>;
 
   return (
     <InfiniteScroll
@@ -20,10 +20,14 @@ const GamesGrid = () => {
       next={fetchNextPage}
       hasMore={hasNextPage}
       loader={
-        <VStack colorPalette="teal" marginBlock={4}>
-          <Spinner borderWidth="4px" size="xl" />
-          <Text>Loading...</Text>
-        </VStack>
+        <Box className="infinite-loader">
+          <Box className="infinite-loader-dots">
+            <Box className="infinite-loader-dot" />
+            <Box className="infinite-loader-dot" />
+            <Box className="infinite-loader-dot" />
+          </Box>
+          <Text className="loading-text">Discovering more games...</Text>
+        </Box>
       }
     >
       <SimpleGrid
@@ -31,7 +35,7 @@ const GamesGrid = () => {
           base: "1fr",
           md: "repeat(2, 1fr)",
           lg: "repeat(3, 1fr)",
-          "2xl": "repeat(4, 1ft)",
+          "2xl": "repeat(4, 1fr)",
         }}
         gap={6}
         padding={4}

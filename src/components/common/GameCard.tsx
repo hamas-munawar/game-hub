@@ -4,66 +4,137 @@ import {
   FaAndroid,
   FaLinux,
   FaPlaystation,
-  FaPlus,
+  FaStar,
   FaWindows,
   FaXbox,
+  FaHeart,
 } from "react-icons/fa6";
+import { FaRegHeart } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-import { Button, Card, HStack, Icon, Image, Text } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+
+import { Box, Button, Card, HStack, Icon, Image, Text } from "@chakra-ui/react";
 
 import getCroppedImageUrl from "../../services/image-url";
 import Emoji from "./Emoji";
+import { useWishlistStore } from "../../store";
 
 import type Game from "../../interfaces/Game";
 interface Props {
   game: Game;
 }
 
+const MotionCard = motion.create(Card.Root);
+
+const platformIcons: Record<string, React.ReactElement> = {
+  pc: <FaWindows />,
+  linux: <FaLinux />,
+  xbox: <FaXbox />,
+  playstation: <FaPlaystation />,
+  mac: <FaApple />,
+  android: <FaAndroid />,
+  ios: <MdPhoneIphone />,
+  web: <BsGlobe />,
+};
+
+const getMetacriticClass = (score: number) => {
+  if (score >= 75) return "metacritic-high";
+  if (score >= 50) return "metacritic-mid";
+  return "metacritic-low";
+};
+
 const GameCard = ({ game }: Props) => {
-  const platformIcons = {
-    pc: <FaWindows />,
-    linux: <FaLinux />,
-    xbox: <FaXbox />,
-    playstation: <FaPlaystation />,
-    mac: <FaApple />,
-    android: <FaAndroid />,
-    ios: <MdPhoneIphone />,
-    web: <BsGlobe />,
+  const { toggleWishlist, isInWishlist } = useWishlistStore();
+  const isWishlisted = isInWishlist(game.id);
+
+  const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    toggleWishlist(game.id);
   };
 
   return (
-    <Link to={`/games/${game.slug}`}>
-      <Card.Root
+    <Link to={`/games/${game.slug}`} style={{ textDecoration: "none" }}>
+      <MotionCard
+        className="game-card"
         overflow="hidden"
-        _hover={{ cursor: "pointer", transform: "scale(1.05)" }}
-        transition={"transform .2s"}
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+        whileHover={{ y: -8 }}
       >
-        <Image
-          src={getCroppedImageUrl(game.background_image)}
-          borderTopRadius="sm"
-        />
-        <Card.Body gap={4}>
-          <HStack gap={2.5}>
+        {/* Image Section */}
+        <Box className="game-card-image-container">
+          <Image
+            className="game-card-image"
+            src={getCroppedImageUrl(game.background_image)}
+            alt={game.name}
+            loading="lazy"
+          />
+          <Box className="game-card-overlay" />
+
+          {/* Metacritic Badge */}
+          {game.metacritic && (
+            <Box className={`game-card-metacritic ${getMetacriticClass(game.metacritic)}`}>
+              {game.metacritic}
+            </Box>
+          )}
+        </Box>
+
+        {/* Card Body */}
+        <Card.Body className="game-card-body" gap={3}>
+          {/* Platform Icons */}
+          <HStack className="game-card-platforms">
             {game.parent_platforms?.map(
               ({ platform: { id, slug } }) =>
-                platformIcons[slug as keyof typeof platformIcons] && (
-                  <Icon key={id} fontSize="xl" color="gray.500">
-                    {platformIcons[slug as keyof typeof platformIcons]}
+                platformIcons[slug] && (
+                  <Icon key={id} className="platform-icon" fontSize="md">
+                    {platformIcons[slug]}
                   </Icon>
                 )
             )}
           </HStack>
-          <Card.Title fontSize="2xl">
+
+          {/* Title */}
+          <Card.Title className="game-card-title" display="flex" alignItems="baseline">
             {game.name} <Emoji rating={game.rating_top} />
           </Card.Title>
-          <Button variant="subtle" width="fit">
-            <FaPlus />
-            <Text letterSpacing={1}>{game.added}</Text>
-          </Button>
+
+          {/* Footer */}
+          <Box className="game-card-footer">
+            {/* Rating */}
+            <HStack className="game-card-rating" color="yellow.500" align="center" gap={1}>
+              <FaStar size={14} style={{ position: 'relative', top: '-1px' }} />
+              <HStack align="baseline" gap={1}>
+                <Text fontSize="md" fontWeight={700}>
+                  {game.rating?.toFixed(1) || "N/A"}
+                </Text>
+                {game.ratings_count > 0 && (
+                  <Text fontSize="xs" opacity={0.6} fontWeight={500}>
+                    ({game.ratings_count.toLocaleString()})
+                  </Text>
+                )}
+              </HStack>
+            </HStack>
+
+            {/* Wishlist Button */}
+            <Button
+              className="game-card-added-btn"
+              variant="subtle"
+              size="xs"
+              gap={1.5}
+              onClick={handleWishlist}
+              color={isWishlisted ? "pink.400" : undefined}
+            >
+              {isWishlisted ? <FaHeart size={14} /> : <FaRegHeart size={14} />}
+              <Text fontSize="xs" letterSpacing={0.5}>
+                {isWishlisted ? "Wishlisted" : "Add to Wishlist"}
+              </Text>
+            </Button>
+          </Box>
         </Card.Body>
-      </Card.Root>
+      </MotionCard>
     </Link>
   );
 };

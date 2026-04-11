@@ -13,7 +13,7 @@ const Emoji = ({ rating }: { rating: number }) => {
     5: { src: bullsEye, alt: "exceptional", boxSize: "35px" },
   };
 
-  return <Image {...emojiMap[rating]} marginTop={1} />;
+  return <Image {...emojiMap[rating]} display="inline-block" marginLeft={3} verticalAlign="baseline" position="relative" top="4px" />;
 };
 
 export default Emoji;

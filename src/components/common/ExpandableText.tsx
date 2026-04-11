@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Button, Text, Box } from "@chakra-ui/react";
 
-import { Button, Text } from "@chakra-ui/react";
 
 interface Props {
   children: string;
@@ -15,18 +15,18 @@ const ExpandableText = ({ children }: Props) => {
   if (children.length <= length) return <Text>{children}</Text>;
 
   return (
-    <Text>
-      {expanded ? children : children.slice(0, length) + "... "}
+    <Box>
+      <Text>
+        {expanded ? children : children.slice(0, length) + "... "}
+      </Text>
       <Button
-        size={"xs"}
-        fontWeight={"bold"}
-        variant="subtle"
-        rounded={"2xl"}
+        className="game-detail-read-more"
+        size="sm"
         onClick={() => setExpanded(!expanded)}
       >
-        {expanded ? "Read Less" : "Read More"}
+        {expanded ? "Show Less" : "Read More"}
       </Button>
-    </Text>
+    </Box>
   );
 };
 

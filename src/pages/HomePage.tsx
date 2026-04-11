@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 
 import PlatformSelector from "../components/common/PlatformSelector";
@@ -5,6 +7,8 @@ import SortOrderSelector from "../components/common/SortOrderSelector";
 import GamesGrid from "../components/GamesGrid";
 import GamesPageHeading from "../components/GamesPageHeading";
 import GenreList from "../components/GenreList";
+
+const MotionBox = motion.create(Box);
 
 const HomePage = () => {
   return (
@@ -15,25 +19,26 @@ const HomePage = () => {
       }}
       templateColumns={{
         sm: "1fr",
-        lg: "200px 1fr",
+        lg: "220px 1fr",
       }}
+      gap={4}
     >
       <GridItem area="aside" display={{ base: "none", lg: "block" }}>
         <GenreList />
       </GridItem>
       <GridItem area="main">
-        <Box paddingInline={4}>
+        <MotionBox
+          paddingInline={4}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
           <GamesPageHeading />
-          <Box
-            display="flex"
-            flexDirection={{ base: "column", sm: "row" }}
-            spaceX={{ sm: 4 }}
-            spaceY={{ base: 4, sm: 0 }}
-          >
+          <Box className="filter-bar">
             <PlatformSelector />
             <SortOrderSelector />
           </Box>
-        </Box>
+        </MotionBox>
 
         <GamesGrid />
       </GridItem>

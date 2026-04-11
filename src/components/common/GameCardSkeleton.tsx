@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   HStack,
   Skeleton,
@@ -8,27 +9,26 @@ import {
 
 const GameCardSkeleton = () => {
   return (
-    <Card.Root gapY={2}>
-      <Skeleton height="200px" />
-      <HStack width="full" marginInline={4} marginTop={2}>
-        <SkeletonCircle size="8" />
-        <SkeletonCircle size="8" />
-        <SkeletonCircle size="8" />
+    <Card.Root className="skeleton-card" gapY={2}>
+      <Box className="skeleton-shimmer">
+        <Skeleton height="200px" borderTopRadius="16px" />
+      </Box>
+      <HStack width="full" marginInline={4} marginTop={3}>
+        <SkeletonCircle size="6" />
+        <SkeletonCircle size="6" />
+        <SkeletonCircle size="6" />
       </HStack>
       <SkeletonText
         noOfLines={2}
         width="80%"
-        height={6}
+        height={5}
         marginInline={4}
         padding={1}
       />
-      <SkeletonText
-        noOfLines={1}
-        width="20%"
-        marginInline={4}
-        marginBottom={2}
-        padding={3}
-      />
+      <HStack marginInline={4} marginBottom={3} justify="space-between">
+        <SkeletonText noOfLines={1} width="30%" padding={2} />
+        <SkeletonText noOfLines={1} width="20%" padding={2} />
+      </HStack>
     </Card.Root>
   );
 };

@@ -13,4 +13,15 @@ export default interface Game {
   background_image: string;
   parent_platforms: { platform: Platform }[];
   rating_top: number;
+  rating: number;
+  ratings_count: number;
+  metacritic: number;
+  released: string;
+  playtime: number;
+  website?: string;
+  reddit_url?: string;
+  developers?: Publisher[];
+  tags?: { id: number; name: string; language: string }[];
+  esrb_rating?: { id: number; name: string; slug: string };
+  stores?: { store: { id: number; name: string; domain: string } }[];
 }

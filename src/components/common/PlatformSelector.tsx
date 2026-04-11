@@ -2,7 +2,7 @@ import { CgChevronDown } from "react-icons/cg";
 
 import { Button, Menu, Portal, Skeleton } from "@chakra-ui/react";
 
-import usePlatforms from "../../hooks/usePaltforms";
+import usePlatforms from "../../hooks/usePlatforms";
 import usePlatform from "../../hooks/usePlatform";
 import useGameQueryStore from "../../store";
 
@@ -16,13 +16,31 @@ const PlatformSelector = () => {
 
   if (error) return;
 
-  if (isLoading) return <Skeleton width="150px" paddingBlock={5}></Skeleton>;
+  if (isLoading)
+    return <Skeleton width="150px" height="36px" borderRadius="12px" />;
 
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
-        <Button variant="subtle" size="sm">
-          {selectedPlatform ? selectedPlatform.name : " Select Platform"}
+        <Button
+          variant="outline"
+          size="sm"
+          borderRadius="xl"
+          fontWeight="medium"
+          fontSize="sm"
+          paddingX={4}
+          paddingY={2}
+          borderColor="whiteAlpha.300"
+          backdropFilter="blur(8px)"
+          _hover={{
+            borderColor: "purple.500",
+            boxShadow: "0 0 20px rgba(108, 92, 231, 0.15)",
+            transform: "none",
+          }}
+          _active={{ transform: "none" }}
+          transition="all 0.3s ease"
+        >
+          {selectedPlatform ? selectedPlatform.name : "All Platforms"}
           <CgChevronDown />
         </Button>
       </Menu.Trigger>
